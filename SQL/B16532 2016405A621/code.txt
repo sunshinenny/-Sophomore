@@ -1,0 +1,84 @@
+--创建数据库及日志文件文件
+CREATE DATABASE db_Library 
+    ON
+	(
+		NAME = db_Library_data ,
+			FILENAME = 'D:\B16532 2016405A621\db_Library_data.mdf'
+			 , SIZE = 10 MB
+			 , MAXSIZE = 300MB 
+			 , FILEGROWTH = 10%
+	)
+
+	log ON
+	(
+		NAME = db_Library_log ,
+			FILENAME = 'D:\B16532 2016405A621\db_Library_data.ldf'
+			 , SIZE = 5MB
+			 , MAXSIZE =200MB 
+			 , FILEGROWTH = 2MB
+	)
+
+
+--新建架构（框架）
+CREATE SCHEMA L_C
+
+--新建表（列数据）
+create table tb_booktype
+(
+	类别编号 char,
+	类别名称 char,
+--	primary(课程编号,课程名,先修课,学分)
+) 
+
+create table tb_book
+(
+	图书编号 char,
+	类别编号 char,
+	书名 char,
+	作者 char,
+	出版社 char,
+	定价 int,
+	库存数 int,
+--	primary(课程编号,课程名,先修课,学分)
+) 
+
+create table tb_reader
+(
+	读者编号 char,
+	姓名 char,
+	性别 char,
+	学号 char,
+	班级 char,
+	系部 char,
+--	primary(课程编号,课程名,先修课,学分)
+) 
+
+create table tb_borrow
+(
+	图书编号 char,
+	读者编号 char,
+	借阅日期 char,
+	归还日期 char,
+--	primary(课程编号,课程名,先修课,学分)
+) 
+
+--对读者信息表进行修改
+USE [db_Library]
+GO
+ALTER TABLE [dbo].[tb_reader] DROP COLUMN [系部]
+GO
+
+create table tb_reader
+(
+	所在系 char,
+)
+ 
+/*ALTER TABLE table_name
+ADD column_name datatype*/
+
+--修改制定列的数据类型
+alter table tb_book 
+alter column 定价 real 
+
+--删除指定表
+ DROP TABLE tb_course;
