@@ -1,0 +1,30 @@
+
+import java.util.Scanner;
+
+
+public class weiqi {
+	public static void main(String[] args){
+		String a[][]=new String[15][15];
+		int i,j,k=0,flag=1;
+		//用以输出棋盘
+		for(i=0;i<15;i++)	
+		{for(j=0;j<15;j++){a[i][j]="┼";System.out.print(a[i][j]);}System.out.println();}
+
+		//更换棋子
+		Scanner sc=new Scanner(System.in);	
+		
+		while(flag==1)
+		{	
+			System.out.println("请输入下棋坐标:");
+			int ii=sc.nextInt();int jj=sc.nextInt();
+			if(k%2==0) a[ii-1][jj-1]="●";
+			else a[ii-1][jj-1]="○";
+			k++;
+			
+			for(i=0;i<15;i++)	
+			{for(j=0;j<15;j++){System.out.print(a[i][j]);}System.out.println();}
+			
+			if(k==224) flag=0;
+		}
+	}
+}
