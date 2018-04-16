@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>陶宇豪的实验报告</title>
+	<style>
+#div1 {
+	display: none
+}
+#div2 {
+	display: none
+}
+	
+/*	默认隐藏*/
+</style>
+	<script language="javascript">
+	
+		function cheackPsw(){
+			var divn1=document.getElementById('div1');
+			var divn2=document.getElementById('div2');
+			if(input.password1.value==""){
+				divn1.style.display="block";
+				divn2.style.display="none"//成功
+				return false;
+			}else{
+				divn1.style.display="none";
+				divn2.style.display="block";
+				return true;
+			}
+		}
+		
+		function cheackForm(){
+//			if(input.password1.value=="123"){
+//			   return false;
+//			   }
+
+//			可以多个if 按照顺序排，可以实现从上往下检查
+//			现实中有一些网页在最后才出现提示，这个用户友好度不是很好
+			
+			//			和检查密码的联动
+			if(cheackPsw()) return true;
+			else return false;
+			   return true;
+		}
+		
+  function $(ID){
+  return document.getElementById(ID);
+  }
+  var cityList=new Array();
+  cityList['北京市']=['东城区','西城区','昌平区'];
+  cityList['河北省']=['保定','石家庄','定州','廊坊'];
+   cityList['江苏省'] = ['南京市','苏州市','无锡市'];
+   cityList['浙江省'] = ['杭州市','宁波市','温州市'];
+   cityList['四川省'] = ['四川省','成都市'];
+   cityList['海南省'] = ['海口市'];
+  function changeCity(){
+   var province=$("selProvince").value;
+   var city=$("selCity");
+    city.options.length=0;
+   for (var i in cityList) {
+   if(i==province){
+    for (var j in cityList[i]) {
+     city.add(new Option(cityList[i][j],cityList[i][j]),null);
+    }
+   }
+   }
+  }
+  function allCity(){
+   var province=$("selProvince");
+   for (var i in cityList) {
+    province.add(new Option(i,i),null);
+   }
+  }
+
+  window.onload=allCity;
+	</script>
+	</head>
+
+	<body>
+<h3><strong>注册：开通您的开心账户</strong></h3>
+<p>开心网是帮助你与你的朋友，同事、同学、家人保持更紧密联系的真实社交平台，通过这个平台你可以及时了解他们的最新动态；分享你的照片、心情、快乐；结识更多的朋友</p>
+<form action="OK.html" name="input" onSubmit="return cheackForm()">
+      <table width="600" border="0">
+    <tbody>
+          <tr>
+        <td align="right">您的Email：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="email" placeholder="" autofocus required=""></td>
+        <td align="left"><span style="background-color:#E4E4E4;font-size: small;">例如123456@qq.com</span></td>
+      </tr>
+          <tr>
+        <td align="right">设置开心网密码：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="password" size="12" maxlength="12" name="password1" id="password1" required="" onBlur="cheackPsw()"></td>
+        <td align="left"><span style="background-color:#E4E4E4;font-size: small;">长度为6-12位</span></td>
+        <div id="div1" >
+              <p>密码格式错误，请重试</p>
+            </div>
+        <div id="div2" >
+              <p>格式正确</p>
+            </div>
+      </tr>
+          <tr>
+        <td align="right">再输入一遍密码：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="password" size="12" maxlength="12"  name="password2" id="password2" required=""></td>
+        <td align="left"><span style="background-color:#E4E4E4;font-size: small;">必须与上方密码相同</span></td>
+      </tr>
+          <tr>
+        <td align="right"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+      </tr>
+          <tr>
+        <td align="right">您的姓名：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="text" required="" size="12"></td>
+      </tr>
+          <tr>
+        <td align="right">性别：<span style="color: #FF0000">*</span></td>
+        <td align="left"><label>
+            <input type="radio" name="RadioGroup1" value="男" id="RadioGroup1_0" >
+            男</label>
+              <label>
+            <input type="radio" name="RadioGroup1" value="女" id="RadioGroup1_1">
+            女</label></td>
+      </tr>
+          <tr>
+        <td align="right">出生日期：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="date" required=""></td>
+      </tr>
+          <tr>
+        <td align="right">居住城市：<span style="color: #FF0000">*</span></td>
+        <td align="left"><select id="selProvince" onchange="changeCity()">
+            <option>请选择省份</option>
+          </select>
+              <select id="selCity">
+            <option>请选择城市</option>
+          </select></td>
+      </tr>
+          <tr>
+        <td align="right">目前身份：<span style="color: #FF0000">*</span></td>
+        <td align="left"><label>
+            <input type="radio" name="目前身份" value="已工作" id="目前身份_0">
+            已工作</label>
+              <label>
+            <input type="radio" name="目前身份" value="学生" id="目前身份_1">
+            学生</label>
+              <label>
+            <input type="radio" name="目前身份" value="其他" id="目前身份_2">
+            其他</label></td>
+      </tr>
+          <tr>
+        <td align="right">爱好：<span style="color: #FF0000" >*</span></td>
+        <td align="left"><label>
+            <input type="checkbox" name="favorite" value="健身" id="favorite_0">
+            健身</label>
+              <label>
+            <input type="checkbox" name="favorite" value="阅读" id="favorite_1">
+            阅读</label>
+              <label>
+            <input type="checkbox" name="favorite" value="电竞" id="favorite_2">
+            电竞</label>
+              <label>
+            <input type="checkbox" name="favorite" value="社交" id="favorite_3">
+            社交</label></td>
+      </tr>
+          <tr>
+        <td align="right">个人介绍：<span style="color: #FF0000" >*</span></td>
+        <td align="left"><textarea placeholder="至少10个字符"></textarea></td>
+      </tr>
+          <tr>
+        <td align="right">谁可以浏览我：<span style="color: #FF0000">*</span></td>
+        <td align="left"><select required>
+            <option value="仅我的好友可以浏览我">仅我的好友可以浏览我</option>
+            <option value="任何人都可以浏览">任何人都可以浏览</option>
+            <option value="仅我自己可以浏览">仅我自己可以浏览</option>
+            <option value="我指定的人可以浏览">我指定的人可以浏览</option>
+          </select></td>
+      </tr>
+          <tr>
+        <td align="right"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+      </tr>
+          <tr>
+        <td align="right">验证码：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="text" required=""></td>
+      </tr>
+          <tr>
+        <td align="right"><span style="color: #FF0000" >*</span>
+              <input type="radio" name="RadioGroup2" value="同意注册协议" id="RadioGroup2_0"></td>
+        <td align="left">同意注册协议</td>
+        <td align="left">&nbsp;</td>
+      </tr>
+          <tr>
+        <td align="right"><input type="submit" value="提交" onclick="" ></td>
+        <td align="left"><input type="reset" value="重填" onclick=""></td>
+      </tr>
+        </tbody>
+  </table>
+    </form>
+</body>
+</html>

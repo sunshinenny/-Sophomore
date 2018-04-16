@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>homework</title>
+<script type="text/javascript">
+function AutoSelect(){
+ if (document.autoSelect.title.focus){
+ document.autoSelect.title.select();}
+}
+	
+function OnlyInputNumbers()
+{
+	if(event.keyCode>=48 && event.keyCode<=57) ;
+	else{
+		event.keyCode=48;//置换为0	
+	}
+}	
+	
+function checknum() { 
+		var num=autoSelect.title.value; 
+		if(autoSelect.title.value==""||isNaN(num)) 
+		{   
+			autoSelect.title.value="";  
+			alert("数字信息不能为空或是非数字形式");  
+		} 
+	else alert("判断为数字");
+}	
+function jump(){
+				var	url;
+				url="https://www."+option.select.value;
+//				window.open(url);
+//				location.replace(url);//不让后退
+				location.href=url;
+}
+
+	
+	
+var flag=0;	
+function ad(){
+		
+		if(flag==0) {
+			alert("请先点击上方广告");
+		}
+		else alert("已观看广告，请继续操作");
+}	
+
+	
+function judgeEmail(){
+	alert(email.email2.value());
+	 var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (filter.test(email.email2.value())) alert('电子邮件格式正确');
+	else {
+	alert('电子邮件格式不正确');
+	}
+}
+	
+	
+window.onload=function(){
+setInterval(function(){
+fnDate();
+},1000);
+	
+	deadTime();
+}
+//js 获取当前时间
+function fnDate(){
+var oDiv=document.getElementById("showtime");
+var date=new Date();
+var hours=date.getHours();//小时
+var minute=date.getMinutes();//分
+var second=date.getSeconds();//秒
+var time=bw(hours)+":"+bw(minute)+":"+bw(second);
+oDiv.innerHTML=time;
+}
+//补位 当某个字段不是两位数时补0
+function bw(str){
+var num;
+str>10?num=str:num="0"+str;
+return num;
+} 
+	
+	
+
+  function deadTime(){
+   var nowTime = new Date();
+   var finalTime = new Date("2018-1-21");
+   var lefttime = (finalTime.getTime() - nowTime.getTime())/(1000*24*60*60);
+   var date = Math.ceil(lefttime);
+   document.getElementById("daojishi").innerHTML = date;
+  }	
+</script>
+</head>
+<body style="font-size:12px">
+<p><a href="https://www.baidu.com" target="_blank" onClick="flag=1">广告</a></p>
+<p onClick="ad()">请点击此处，验证是否观看广告</p>
+<form name="autoSelect">
+  <tr>
+    <td width="363"><input name="title" type="text" size="50" value="只能输入数字" onClick="AutoSelect()"
+onkeypress="OnlyInputNumbers()" onblur="checknum()">
+      <input type="submit" name="Submit" value="提交并验证"></td>
+  </tr>
+</form>
+<form name="option">
+  <select name="select" id="select" onchange="jump()">
+    <option value="点击选择网页进行打开" name="click">
+    <p>
+    点击选择网页进行打开
+    </p>
+    </option>
+    <option value="baidu.com" name="baidu">
+    <p>
+    百度
+    </p>
+    </option>
+    <option value="google.com" name="google">
+    <p>
+    谷歌
+    </p>
+    </option>
+  </select>
+</form>
+<form name="email">
+  <input name="email1" id="email1" type="email" placeholder="属性验证email" >
+  		<input name="email2" id="email2" type="text" placeholder="表达式验证email" onBlur="judgeEmail()">
+  <input type="submit" name="SubmitEmail" value="验证" >
+	
+</form>
+<form >
+  <div>现在的时间：<span  id="showtime"></span> </div>
+</form>
+<form name="daojishi">
+  <div >距离寒假还有： <span id ="daojishi"></span>天</div>
+</form>
+</body>
+</html>

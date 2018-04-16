@@ -1,0 +1,372 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>陶宇豪的实验报告</title>
+	<style>
+div {
+	display: none;
+}
+</style>
+	<script language="javascript">
+	
+function checkLoginName(){
+	var name=input.loginName.value;
+
+	var divn1=document.getElementById('nameError');
+	var divn2=document.getElementById('nameTrue');
+	if(name.length>12 || name.length<6){
+		divn1.style.display="none";
+		divn2.style.display="block";//成功
+		return true;//不符合要求的，返回false
+	   }
+	else{
+		divn1.style.display="block";
+		divn2.style.display="none";
+		return false;
+	}
+}
+
+function checkEmail(){
+   var str=input.mail.value;
+   var dEmail=document.getElementById("Email");
+	var divn1=document.getElementById('emailError');
+	var divn2=document.getElementById('emailTrue');
+	
+   var reg = /^[0-9a-zA-Z_]{2,12}@(163|126|qq|yahoo|gmail|sina)\.(com|com\.cn|cn|la)$/;
+   if(str==""||str.search(reg) < 0){
+	   divn1.style.display="none";
+	   divn2.style.display="block";
+		return true;
+   }
+    else{
+		
+	   divn1.style.display="block";
+	   divn2.style.display="none";
+		   return false;
+	  }
+   
+}		
+		
+function checkPsw(){
+	var reg = new RegExp(/^(?![^a-zA-Z]+$)(?!\D+$)/);
+	var p=input.password1.value;
+
+	var divn1=document.getElementById('pwError');
+	var divn2=document.getElementById('pwTrue');
+	 if(p==""||p.length<6||p.length>12||!reg.test(p)){
+		divn1.style.display="block";
+		divn2.style.display="none";//成功
+//				alert("请输入密码");
+		return false;
+	}else{
+		divn1.style.display="none";
+		divn2.style.display="block";
+		return true;
+	}
+}
+function checkPassword(){
+	var divn1=document.getElementById('checkError');
+	var divn2=document.getElementById('checkTrue');
+	if(input.password1.value==input.password2.value){
+		divn1.style.display="none";
+		divn2.style.display="block";//成功
+		return true;//验证成功返回True
+	}
+	else {
+		divn1.style.display="block";
+		divn2.style.display="none";//成功
+		return false;//验证失败返回false
+	}
+}
+
+function checkName(){
+	if(input.name.value==""){
+		alert("请输入姓名");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function checkAge(){
+	var reg = new RegExp(/^\d{0,3}$/);
+	var divn1=document.getElementById('ageError');
+	var divn2=document.getElementById('ageTrue');
+	var age=input.age.value;
+	if(!reg.test(age)){
+		divn1.style.display="block";
+		divn2.style.display="none";//成功
+		return false;//验证成功返回True
+	}
+	else{
+		divn1.style.display="none";
+		divn2.style.display="block";//成功
+		return true;//验证成功返回True
+	}
+}
+
+function checkSex(){
+	var count=0;
+	for(i=0;i<2;i++)
+		if(input.sex[i].checked==true)
+			count++;
+		if(count!=1){
+		html=html+"<font color=red>请选择性别</font><br>";
+		return false;
+	}else{
+		return true;
+	}
+}
+
+
+
+function checkBox(){
+
+	var divn1=document.getElementById("favoriteError");
+	var divn2=document.getElementById("favoriteTrue");
+	var option=document.getElementsByName("favorite");
+	var count=0;
+	for(var i=0;i<option.length;i++){
+			if(option.checked){
+			count++;
+		}
+	}
+	if(count<2){
+		divn1.style.display="block";
+		divn2.style.display="none";
+		return false;
+	}
+	else{
+		divn1.style.display="none";
+		divn2.style.display="block";
+		return true;
+	}
+}
+
+function checkJieshao(){
+	var divn1=document.getElementById('jieshaoError');
+	var divn2=document.getElementById('jieshaoTrue');
+	if(input.jieshao.value==""||input.jieshao.value.length<10){
+		divn1.style.display="block";
+		divn2.style.display="none";//成功
+		return false;
+	}else{
+
+		divn1.style.display="none";
+		divn2.style.display="block";//成功
+		return true;
+	}
+}		
+
+
+	function checkYanzhengma(){
+	if(input.yanzhengma.value==""){
+		alert("请输入验证码");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+
+function checkForm(){
+	if(checkLoginName()){
+		if (checkName()){
+			if(checkEmail()){
+				if(checkPsw()) {
+						if(checkPassword()) {
+								if(checkPassword()) {
+										if(checkName()) {
+												if(checkSex()) {
+														if(checkAge()) {
+															if(checkBox()) {
+															alert("注册成功");
+															return true;
+															}
+														}
+												}
+
+										}
+
+								}
+
+						}
+
+				}
+
+			}
+		}
+	}
+	else{
+		alert("请检查填写内容是否有错误。");
+		return false;
+	} 
+}
+		
+  function $(ID){
+  return document.getElementById(ID);
+  }
+  var cityList=new Array();
+  cityList['北京市']=['东城区','西城区','昌平区'];
+  cityList['河北省']=['保定','石家庄','定州','廊坊'];
+   cityList['江苏省'] = ['南京市','苏州市','无锡市'];
+   cityList['浙江省'] = ['杭州市','宁波市','温州市'];
+   cityList['四川省'] = ['四川省','成都市'];
+   cityList['海南省'] = ['海口市'];
+  function changeCity(){
+   var province=$("selProvince").value;
+   var city=$("selCity");
+    city.options.length=0;
+   for (var i in cityList) {
+   if(i==province){
+    for (var j in cityList[i]) {
+     city.add(new Option(cityList[i][j],cityList[i][j]),null);
+    }
+   }
+   }
+  }
+  function allCity(){
+   var province=$("selProvince");
+   for (var i in cityList) {
+    province.add(new Option(i,i),null);
+   }
+  }
+
+  window.onload=allCity;
+	</script>
+	</head>
+
+	<body>
+<h3><strong>注册：开通您的开心账户</strong></h3>
+<p>开心网是帮助你与你的朋友，同事、同学、家人保持更紧密联系的真实社交平台，通过这个平台你可以及时了解他们的最新动态；分享你的照片、心情、快乐；结识更多的朋友</p>
+<form name="input" onSubmit="return checkForm()">
+      <table width="600" border="0">
+    <tbody>
+          <tr>
+        <td align="right">用户名：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="text" name="loginName" autofocus required="" placeholder="长度6-12位" onBlur="checkLoginName()"></td>
+        <td><div id="nameError" > 用户名检测正确 </div>
+              <div id="nameTrue" > 用户名不合法，请重新输入 </div></td>
+      </tr>
+          <tr>
+        <td align="right">您的Email：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="email" name="mail"  id="Email" autofocus required="" placeholder="例如123456@qq.com" onBlur="checkEmail()"></td>
+			  
+        <td><div id="emailError" > 邮箱正确 </div>
+              <div id="emailTrue" > 邮箱不合法，请重新输入 </div></td>
+      </tr>
+          <tr>
+        <td align="right">设置开心网密码：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="password"  name="password1" id="password1" required=""  placeholder="6-12位 字母和数字混合" onBlur="checkPsw()"></td>
+        <td><div id="pwError" > 请检查密码格式 </div>
+              <div id="pwTrue" > 格式正确 </div></td>
+      </tr>
+          <tr>
+        <td align="right">再输入一遍密码：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="password" size="12" maxlength="12"  name="password2" id="password2" required="" onBlur="checkPassword()"></td>
+        <td><div id="checkError" > 请检查密码是否相同 </div>
+              <div id="checkTrue" > 通过验证</div></td>
+        <td align="left"></td>
+      </tr>
+          <tr>
+        <td align="right"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+      </tr>
+          <tr>
+        <td align="right">您的姓名：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input name="name" type="text" required="" size="12" onBlur="checkName()"></td>
+      </tr>
+          <tr>
+        <td align="right">性别：<span style="color: #FF0000">*</span></td>
+        <td align="left"><label>
+            <input type="radio" name="sex" value="男" id="RadioGroup1_0" onBlur="checkSex()">
+            男</label>
+              <label>
+            <input type="radio" name="sex" value="女" id="RadioGroup1_1" onBlur="checkSex()">
+            女</label></td>
+      </tr>
+          <tr>
+        <td align="right">年龄：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input type="text" name="age" size="5" required=""  onBlur="checkAge()" ></td>
+        <td><div id="ageError" > 请检查格式 </div>
+              <div id="ageTrue" > 符合条件</div></td>
+      </tr>
+          <tr>
+        <td align="right">居住城市：<span style="color: #FF0000">*</span></td>
+        <td align="left"><select id="selProvince" onchange="changeCity()">
+            <option>请选择省份</option>
+          </select>
+              <select id="selCity">
+            <option>请选择城市</option>
+          </select></td>
+      </tr>
+          <tr>
+        <td align="right">目前身份：<span style="color: #FF0000">*</span></td>
+        <td align="left"><label>
+            <input type="radio" name="目前身份" value="已工作" id="目前身份_0">
+            已工作</label>
+              <label>
+            <input type="radio" name="目前身份" value="学生" id="目前身份_1">
+            学生</label>
+              <label>
+            <input type="radio" name="目前身份" value="其他" id="目前身份_2">
+            其他</label></td>
+      </tr>
+          <tr>
+        <td align="right">爱好：<span style="color: #FF0000" >*</span></td>
+        <td align="left"><label>
+            <input type="checkbox" name="favorite" value="健身" id="favorite_0" onblur="checkBox()">
+            健身</label>
+              <label>
+            <input type="checkbox" name="favorite" value="阅读" id="favorite_1" onblur="checkBox()">
+            阅读</label>
+              <label>
+            <input type="checkbox" name="favorite" value="电竞" id="favorite_2" onblur="checkBox()">
+            电竞</label>
+              <label>
+            <input type="checkbox" name="favorite" value="社交" id="favorite_3" onblur="checkBox()">
+            社交</label></td>
+        <td><div id="favoriteError" > 至少选择两项 </div>
+              <div id="favoriteTrue"> </div></td>
+      </tr>
+          <tr>
+        <td align="right">个人介绍：<span style="color: #FF0000" >*</span></td>
+        <td align="left"><textarea name="jieshao" placeholder="至少10个字符" onBlur="checkJieshao()"></textarea></td>
+        <td><div id="jieshaoError" > 请检查结构是否正确 </div>
+              <div id="jieshaoTrue" > 符合条件</div></td>
+      </tr>
+          <tr>
+        <td align="right">谁可以浏览我：<span style="color: #FF0000">*</span></td>
+        <td align="left"><select required>
+            <option value="仅我的好友可以浏览我">仅我的好友可以浏览我</option>
+            <option value="任何人都可以浏览">任何人都可以浏览</option>
+            <option value="仅我自己可以浏览">仅我自己可以浏览</option>
+            <option value="我指定的人可以浏览">我指定的人可以浏览</option>
+          </select></td>
+      </tr>
+          <tr>
+        <td align="right"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+        <td align="left"><hr noshade size="1" align="center" width="100%" color="#A6A4A4"></td>
+      </tr>
+          <tr>
+        <td align="right">验证码：<span style="color: #FF0000">*</span></td>
+        <td align="left"><input name="yanzhengma" type="text" required="" onBlur="checkYanzhengma()"></td>
+      </tr>
+          <tr>
+        <td align="right"><span style="color: #FF0000" >*</span>
+              <input type="radio" name="RadioGroup2" value="同意注册协议" id="RadioGroup2_0"></td>
+        <td align="left">同意注册协议</td>
+        <td align="left">&nbsp;</td>
+      </tr>
+          <tr>
+        <td align="right"><input type="submit" value="提交" onclick="" ></td>
+        <td align="left"><input type="reset" value="重填" onclick=""></td>
+      </tr>
+        </tbody>
+  </table>
+    </form>
+</body>
+</html>

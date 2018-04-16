@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title>
+			<!--javascrip中变量定义是弱数据类型
+			不区分int char string等
+			也可以类似python直接使用一个变量，不需要定义，但是会被当成全局变量，导致有时运行时出错。
+			-->
+			
+			
+		</title>
+		<script language="JavaScript">
+			
+			document.write("<p align='center'>HelloWorld!</p>");
+//			window.open("http://www.baidu.com");
+			function jump(){
+				var url="https://www."+form1.select1.value;
+//				windows.OPEN(url);
+//				location.replace(url);
+//				location.href=url;
+/*打开网址，不过三种语法有区别*/
+				
+			}
+			
+			function clear(){
+				if(window.document.form1.t1.value=="please")
+					window.document.form1.t1.value="";
+			}
+			
+		</script>
+	</head>
+	<body>
+		<form name="form1" method="post" action="">
+			<select name="select1" id="select1" onchange="jump()">
+				<option>1</option>
+			<option value="baidu.com"><p>baidu.com</p></option>
+			<option value="google.com"><p>google.com</p></option>
+			</select>
+			<input type="text" name="t1" value="please" onfocus="clear()">
+		</form>
+	</body>
+</html>

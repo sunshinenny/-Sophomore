@@ -1,0 +1,51 @@
+上课笔记
+visibility="hidden" 隐藏
+visibility="visible" 显示
+visibility是内容隐藏了 但是仍然占用空间
+
+or style's way
+display="none" 隐藏
+display="" 显示 或者是block
+display是直接释放了整个组件
+
+密码的验证
+<style>
+	#div2{display:none}
+/*	默认隐藏*/
+</style>
+
+
+funcation checkPsd(){
+	前提，表单名字 f1 密码框叫做tpsd
+	success的div叫做div2 error的div叫做div3 
+
+	var divn2=document.getElementById('div2');
+	var divn3=同上;
+	if(f1.tpsd.value==""){
+	divn2.style.display="none";
+	如果定义了style，就需要在divn2后面加上style
+}
+else{
+
+}
+}
+
+onblur是失去焦点的意思
+onSubmit是要提交还没有提交的时候触发的
+
+点击注册的时候要统一验证一下，如果有错误，需要阻止提交
+给表单(注意是表单这个标签内写 onSubmit)的onSubmit="return 验证函数()"；写一个办法
+
+onSubmit是要提交还没有提交的时候触发的
+
+如果返回值是true 可以提交
+返回值是false 不可以提交
+
+如果调用函数时，需要返回值，估计是在函数调用前加上一个return 
+
+
+下面是例子：
+
+funcation cheackForm(){
+	
+}
