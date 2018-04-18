@@ -9,7 +9,7 @@
  - MVC分层
  
  **web**
- - html
+ - HTML
  - JavaScript
  - CSS
  
